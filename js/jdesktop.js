@@ -732,7 +732,7 @@ var nJDSK = (function(wnd,d,$){
 	  	  // run callbsck upon window creation
 	  	  if (typeof createCallback == 'function')
 	  	  {
-	  		  createCallback(id);
+	  		  createCallback('win_'+id);
 	  	  }
 	  		
 	  	},
@@ -759,6 +759,25 @@ var nJDSK = (function(wnd,d,$){
 	  		nJDSK.customHeaderDialog('Confirm', title, message, buttons)
 	  	},
 	  	
+
+	  	/**
+	  	 * Custom form dialog
+	  	 */
+	  	customFormDialog: function(width,height,winTitle,title,message,buttons,modal,isFullGlass,callback)
+	  	{
+	  		var aWinId = 'w'+nJDSK.uniqid();
+	  		var win = new nJDSK.Window(width,height,winTitle,'','<form action="" method="post"><h1>'+title+'</h1>'+message+'<div class="buttonarea"></div></form>',aWinId,true,modal,isFullGlass,callback);
+	  		for (var i = 0; i<buttons.length;i++)
+	  		{
+	  			var btnType = 'button';
+	  			if (buttons[i].type == 'submit')
+	  				btnType = 'submit';
+	  			$('#win_'+aWinId+' .buttonarea').append('<button type="'+btnType+'" class="button '+buttons[i].type+'">'+buttons[i].value+'</button>');
+	  			$('#win_'+aWinId+' .buttonarea .'+buttons[i].type).click(nJDSK.return_confirm_callback_func(buttons,i,win));
+	  		}
+	  		return win;
+	  	},
+	  	
 	  	
 	  	/**
 	  	 * Custom size dialog
@@ -766,7 +785,7 @@ var nJDSK = (function(wnd,d,$){
 	  	customSizeDialog: function(width,height,winTitle,title,message,buttons,isFullGlass)
 	  	{
 	  		var aWinId = 'w'+nJDSK.uniqid();
-	  		var win = new nJDSK.Window(width,height,winTitle,'','<h1>'+title+'</h1><p>'+message+'</p><div class="buttonarea"></div>',aWinId,true,true,isFullGlass);
+	  		var win = new nJDSK.Window(width,height,winTitle,'','<h1>'+title+'</h1>'+message+'<div class="buttonarea"></div>',aWinId,true,true,isFullGlass);
 	  		for (var i = 0; i<buttons.length;i++)
 	  		{
 	  			$('#win_'+aWinId+' .buttonarea').append('<button type="button" class="button '+buttons[i].type+'">'+buttons[i].value+'</button>');
@@ -788,6 +807,7 @@ var nJDSK = (function(wnd,d,$){
 	  			$('#win_'+aWinId+' .buttonarea').append('<button type="button" class="button '+buttons[i].type+'">'+buttons[i].value+'</button>');
 	  			$('#win_'+aWinId+' .buttonarea .'+buttons[i].type).click(nJDSK.return_confirm_callback_func(buttons,i,win));
 	  		}
+	  		return win;
 	  	},
 	  	
 	  	/**
