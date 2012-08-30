@@ -658,7 +658,8 @@ var nJDSK = (function(wnd,d,$){
 	  			// connect the callback function
 	  			if (typeof(callback) == 'function')
 	  			{
-	  				$('#'+id).click(function(e){
+	  				// fixed by Max Rondon (the id selector was wrong)
+	  				$('#'+$(windowBase).attr('id')+'_'+id).click(function(e){
 	  					return callback($(this));
 	  				});
 	  			}
