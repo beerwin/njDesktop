@@ -179,7 +179,18 @@ var nJDSKApp = (function(w,d,$){
 							'images/icons/silk/arrow_up.png',
 							function(sender)
 							{
-								
+								nJDSK.alert(
+									'Message',
+									'Arrow Up has been clicked',
+									[
+									 	{
+									 		type:'ok_yes',
+									 		value:'OK',
+									 		callback:function(win){
+									 			win.close();
+									 		}
+									 	}
+									]);
 							}
 							
 					);
@@ -190,6 +201,18 @@ var nJDSKApp = (function(w,d,$){
 							'images/icons/silk/arrow_refresh.png',
 							function(sender)
 							{
+								nJDSK.alert(
+									'Message',
+									'Arrow Refresh has been clicked',
+									[
+									 	{
+									 		type:'ok_yes',
+									 		value:'OK',
+									 		callback:function(win){
+									 			win.close();
+									 		}
+									 	}
+									]);
 								
 							}
 							
@@ -207,7 +230,19 @@ var nJDSKApp = (function(w,d,$){
 							'images/icons/silk/page.png',
 							function(sender)
 							{
-								
+								nJDSK.alert(
+									'Message',
+									'Page button has been clicked',
+									[
+									 	{
+									 		type:'ok_yes',
+									 		value:'OK',
+									 		callback:function(win){
+									 			win.close();
+									 		}
+									 	}
+									]);
+							
 							}
 							
 					);
@@ -218,6 +253,18 @@ var nJDSKApp = (function(w,d,$){
 							'images/icons/silk/page_edit.png',
 							function(sender)
 							{
+								nJDSK.alert(
+									'Message',
+									'Page Edit has been clicked',
+									[
+									 	{
+									 		type:'ok_yes',
+									 		value:'OK',
+									 		callback:function(win){
+									 			win.close();
+									 		}
+									 	}
+									]);
 								
 							}
 							
@@ -229,6 +276,18 @@ var nJDSKApp = (function(w,d,$){
 							'images/icons/silk/page_delete.png',
 							function(sender)
 							{
+								nJDSK.alert(
+									'Message',
+									'Page Delete has been clicked',
+									[
+									 	{
+									 		type:'ok_yes',
+									 		value:'OK',
+									 		callback:function(win){
+									 			win.close();
+									 		}
+									 	}
+									]);
 								
 							}
 							
@@ -245,6 +304,18 @@ var nJDSKApp = (function(w,d,$){
 							'images/icons/silk/folder_add.png',
 							function(sender)
 							{
+								nJDSK.alert(
+									'Message',
+									'Folder Add has been clicked',
+									[
+									 	{
+									 		type:'ok_yes',
+									 		value:'OK',
+									 		callback:function(win){
+									 			win.close();
+									 		}
+									 	}
+									]);
 								
 							}
 							
