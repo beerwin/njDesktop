@@ -1008,13 +1008,12 @@ var nJDSK = (function(wnd,d,$){
 	  		
 	  		// Cancel mousedown. Taken from JQuery Desktop http://desktop.sonspring.com/
 	        $(d).mousedown(function(ev) {
-	          var tags = ['a', 'button', 'input', 'select', 'textarea', 'tr', '.contentarea'];
+	          /*var tags = ['a', 'button', 'input', 'select', 'textarea', 'tr', '.contentarea'];
 
 	          if (!$(ev.target).closest(tags).length) {
 	            nJDSK.clearActive();
-	            ev.preventDefault();
 	            ev.stopPropagation();
-	          }
+	          }*/
 	        });	  		
 	  		
 	  		// taken from JQuery Desktop http://desktop.sonspring.com/

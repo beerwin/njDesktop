@@ -738,7 +738,11 @@ div.buttonarea
 	background-color: rgba(255, 255, 255, 0.5);
 }
 
-.button{
+.button,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]{
 	margin: 0 5px 0 5px;
 	border:1px solid #999;
 	padding:5px;
@@ -756,7 +760,31 @@ div.buttonarea
 	cursor:pointer;
 }
 
-.button:hover{
+input[type="submit"],
+button[type="submit"]
+{
+	border:1px solid #06c;
+	background-image: -moz-linear-gradient(#9cf,#69f);
+	background-image: -webkit-linear-gradient(#9cf,#69f);
+	background-image: -o-linear-gradient(#9cf,#69f);
+	background-image: linear-gradient(#9cf,#69f);
+	color:#333;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover
+{
+	border:1px solid #8bf;
+	background-image: -moz-linear-gradient(#def,#adf);
+	background-image: -webkit-linear-gradient(#def,#adf);
+	background-image: -o-linear-gradient(#def,#adf);
+	background-image: linear-gradient(#def,#adf);
+}
+
+.button:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover{
 	background-color:#EEEEEE;
 	background-image: -moz-linear-gradient(#cccccc,#f0f0f0);
 	background-image: -webkit-linear-gradient(#cccccc,#f0f0f0);
@@ -886,13 +914,6 @@ Top menu
 .widget h3{margin:0; padding:5px 0 5px 0; font-size:18px; font-weight:normal; border-bottom:1px solid #f0f0f0; color:#fff;}
 .wdg_clock{text-align:center; color:#fff; font-size:48px;}
 .wdg_cal{text-align:center; color:#fff; font-size:14px; text-align:right}
-
-.row{text-align:center; padding:5px;}
-input[type="text"],input[type="password"],input[type="file"],input[type="checkbox"], select, textarea, .inputbox{border:1px solid #666666; border-radius:3px; box-shadow:inset 1px 1px 3px rgba(0,0,0,0.3); padding:3px; font-size:14px;}
-input[type="text"]:hover,input[type="password"]:hover,input[type="file"]:hover,input[type="checkbox"]:hover, select:hover, textarea:hover, .input:hover{border:1px solid #333333}
-input[type="text"]:focus,input[type="password"]:focus,input[type="file"]:focus,input[type="checkbox"]:focus, select:focus, textarea:focus, .input:focus{border:1px solid #0066cc}
-input[type="text"].invalid,input[type="password"].invalid,input[type="file"].invalid,input[type="checkbox"].invalid, select.invalid, textarea.invalid, .inputbox.invalid{border:1px solid #c10; background-color:#ffeeee}
-label{display:block; float:left; vertical-align:middle; width:150px; margin-right:10px; text-align:right}
 
 .block{display:block;}
 .sysmsg{margin:10px; padding:5px; border:1px solid #ccc; background-color:#f0f0f0; color:#333; font-size:12px;}

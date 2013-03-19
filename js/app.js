@@ -66,7 +66,8 @@ var nJDSKApp = (function(w,d,$){
 						 		}
 						 	}
 						]
-				)
+				);
+				return false;
 			});
 			/*dummy menus to fill up the menu*/
 			nJDSK.menuHelper.addMenu('','othermenu','Other','#','');
@@ -163,6 +164,47 @@ var nJDSKApp = (function(w,d,$){
 				
 				return false;
 			});
+
+			
+			// this icon creates a glassy resizable window (content area is translucent)
+			nJDSK.iconHelper.addIcon('resIconFormWindow','Basic HTML Form elements','images/bws_logo2k9.png',function(e){
+				e.preventDefault();
+				$.get('form.html',function(msg){
+					var newWindow = new nJDSK.Window(640,520,'Form elements','',msg, nJDSK.uniqid());
+					// create a radio button group
+					$('#radio').buttonset();
+					// checkbox
+					$('#item4').button();
+					// Select menu
+					$('#item2').selectmenu({width:150});
+					newWindow.setFooter('This is a dynamic footer');
+					// find the form in the new window. We can use the window's base property, it holds the window's main wrapper div
+					$(newWindow.base).find('#test_form').submit(function(e){
+						e.preventDefault();
+						// we close the window with submit button
+						newWindow.close();
+						
+						// and show an alert
+						nJDSK.alert(
+								'Form submitted',
+								'The form has been submitted.',
+								[
+								 	{
+								 		type:'ok_yes',
+								 		value:'OK',
+								 		callback:function(win){
+								 			win.close();
+								 		}
+								 	}
+								 ]
+							);
+						return false;
+					});
+				});
+				
+				return false;
+			});
+			
 			
 			// this icon creates a window with a toolbar
 			nJDSK.iconHelper.addIcon('resIconX','Resizable window with toolbar items','images/bws_logo2k9.png',function(e){
@@ -326,9 +368,9 @@ var nJDSKApp = (function(w,d,$){
 				return false;
 			});
 			
-			nJDSK.iconHelper.addIcon('resIconX1','Resizable window','images/bws_logo2k9.png',function(e){
+			nJDSK.iconHelper.addIcon('resIconX1','Text','images/bws_logo2k9.png',function(e){
 				e.preventDefault();
-				$.get('xct.html?ver='+nJDSK.uniqid(),function(msg){
+				$.get('text.html?ver='+nJDSK.uniqid(),function(msg){
 					var newWindow = new nJDSK.Window(640,480,'A window with text','',msg, nJDSK.uniqid());
 					newWindow.setFooter('This is a dynamic footer');
 				});

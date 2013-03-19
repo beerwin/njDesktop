@@ -1,0 +1,85 @@
+<form action="" id="test_form">
+	<h1>This is a form title</h1>
+	<h2>Section title</h2>
+	<fieldset>
+		<legend>
+			Fieldset label
+		</legend>
+		<div class="row">
+			<label for="item1">
+				Text Field name
+			</label>
+			<input type="text" name="item1" id="item1" />
+		</div>
+		<div class="row">
+			<label for="item2">
+				Select Field name
+			</label>
+			<select name="item2" id="item2">
+				<optgroup label="Group 1">
+					<option value="1">Item 1</option>
+					<option value="2">Item 2</option>
+					<option value="3">Item 3</option>
+					<option value="4">Item 4</option>
+					<option value="5">Item 5</option>
+					<option value="6">Item 6</option>
+				</optgroup>
+				<optgroup label="Group 2">
+					<option value="1">Item 1</option>
+					<option value="2">Item 2</option>
+					<option value="3">Item 3</option>
+					<option value="4">Item 4</option>
+					<option value="5">Item 5</option>
+					<option value="6">Item 6</option>
+				</optgroup>
+			</select>
+		</div>
+		<div class="row">
+			<label for="item3">
+				File upload
+			</label>
+			<input type="file" name="item3" id="item3" />
+		</div>
+		<div class="row">
+			<label>
+				Checkbox
+			</label>
+			<input type="checkbox" name="item4" id="item4" />
+			<label for="item4">Check me</label>
+		</div>
+		<div class="row">
+			<label for="item5">
+				Textarea
+			</label>
+			<textarea name="item5" id="item5" cols="30" rows="4">This is some text in the textarea</textarea>
+		</div>
+		<div class="row">
+			<label>
+				Radio buttons
+			</label>
+			<span id="radio">
+			<input type="radio" name="item6" id="item6" checked="checked" />
+			<label for="item6" class="no-fixed">
+				Radio 1
+			</label>
+			<input type="radio" name="item6" id="item7" />
+			<label for="item7" class="no-fixed">
+				Radio 2
+			</label>
+			<input type="radio" name="item6" id="item8" />
+			<label for="item8" class="no-fixed">
+				Radio 3
+			</label>
+			<input type="radio" name="item6" id="item9" />
+			<label for="item9" class="no-fixed">
+				Radio 4
+			</label>
+			</span>
+		</div>
+	</fieldset>
+	<div class="row buttonarea">
+		<input type="button" value="Simple button">
+		<button type="button">Another simple button</button>
+		<input type="submit" value="Submit button" />
+	</div>
+</form>
