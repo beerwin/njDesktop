@@ -543,9 +543,11 @@ var nJDSK = (function(wnd,d,$){
 
 	  	  });
 	  	  
+	  	  // arbitrary resize through program
 	  	  this.setDimensions = function(left,top,width,height)
 	  	  {
 	  		  $(this.base).css({"left" : left + 'px',"top" : top + 'px', 'width' : (width - 10) + 'px', 'height' : (height - 10) + 'px'});
+	  		  // trigger resize event
 	  		  $(this.base).resize();
 	  	  }
 	  	  
@@ -1025,6 +1027,30 @@ var nJDSK = (function(wnd,d,$){
 	  			}
 	  			
 	  			
+	  		}
+	  	},
+	  	
+	  	cascade: function(){
+	  		var wt = 0;
+	  		var wl = 0;
+	  		
+	  		var windowCount = this.WindowList.items.length;
+	  		
+	  		for (var i = 0; i < windowCount; i++)
+	  		{
+	  			if ((wl+25+640) > $(wnd).width()-nJDSK.widgetWidth){
+					wl = 10;
+				} else {
+					wl+=25;
+				}
+				
+				if ((wt+25+480) > ($(wnd).height()-nJDSK.taskbarHeight-nJDSK.topMenuHeight)){
+					wt = 10;
+				} else {
+					wt+=25;
+				}
+				
+				this.WindowList.items[i].window_object.setDimensions(wl,wt,640,480);
 	  		}
 	  	},
 	  	

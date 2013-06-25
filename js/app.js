@@ -81,6 +81,11 @@ var nJDSKApp = (function(w,d,$){
 				nJDSK.tile();
 				return false;
 			});
+			// cascade menu
+			nJDSK.menuHelper.addMenu('windowmenu','cascade-1','Cascade','#','',function(){
+				nJDSK.cascade();
+				return false;
+			});
 		},
 		
 		// This is the clock updater function for the demo widget
