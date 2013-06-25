@@ -73,6 +73,14 @@ var nJDSKApp = (function(w,d,$){
 			nJDSK.menuHelper.addMenu('','othermenu','Other','#','');
 			nJDSK.menuHelper.addMenu('othermenu','othermenu-1','Other SubMenu item','#','');
 			nJDSK.menuHelper.addMenu('othermenu','othermenu-2','Other SubMenu item','#','');
+			
+			// demo menus for nJDSK extra functions
+			nJDSK.menuHelper.addMenu('','windowmenu','Window','#','');
+			// tile menu
+			nJDSK.menuHelper.addMenu('windowmenu','tile-1','Tile','#','',function(){
+				nJDSK.tile();
+				return false;
+			});
 		},
 		
 		// This is the clock updater function for the demo widget

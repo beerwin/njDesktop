@@ -543,6 +543,12 @@ var nJDSK = (function(wnd,d,$){
 
 	  	  });
 	  	  
+	  	  this.setDimensions = function(left,top,width,height)
+	  	  {
+	  		  $(this.base).css({"left" : left + 'px',"top" : top + 'px', 'width' : (width - 10) + 'px', 'height' : (height - 10) + 'px'});
+	  		  $(this.base).resize();
+	  	  }
+	  	  
 	  	  //adds some behavior for standard bws list 
 	  	  var awidth = 0;
 	  	  $('.list_header div').each(function(){
@@ -728,9 +734,9 @@ var nJDSK = (function(wnd,d,$){
 	  	  
 	  	  
 	  	  //register the window object and store array index
-	  	  this.index = nJDSK.WindowList.add_item(this.id, this);	
+	  	  this.index = nJDSK.WindowList.add_item(id, this);	
 	  	  
-	  	  // run callbsck upon window creation
+	  	  // run callback upon window creation
 	  	  if (typeof createCallback == 'function')
 	  	  {
 	  		  createCallback('win_'+id);
@@ -826,6 +832,200 @@ var nJDSK = (function(wnd,d,$){
 	  	{
 	  		var newDate = new Date;
 	  		return newDate.getTime();
+	  	},
+	  	
+	  	/**
+	  	 * Tile windows
+	  	 */
+	  	
+	  	tile: function(){
+	  		var windowCount = this.WindowList.items.length;
+	  		
+	  		if (windowCount > 20)
+	  			windowCount = 20;
+	  		
+	  		var rowCount = 1;
+	  		var row1count = 1;
+	  		var row2count = 1;
+	  		var row3count = 1;
+	  		var row4count = 1;
+	  		
+	  		switch(windowCount)
+	  		{
+	  			case 2: 
+	  				rowCount = 1;
+	  				row1count = 2;
+	  			break;
+	  			case 3:
+	  				rowCount = 1;
+	  				colCount = 3;
+	  				row1count = 3;
+	  			break;
+	  			case 4:
+	  				rowCount = 2;
+	  				row1count = 2;
+	  				row2count = 2;
+	  			break;
+	  			case 5:
+	  				rowCount = 2;
+	  				row1count = 2;
+	  				row2count = 3;
+	  			break;
+	  			case 6:
+	  				rowCount = 2;
+	  				row1count = 3;
+	  				row2count = 3;
+	  			break;
+	  			case 7:
+	  				rowCount = 3;
+	  				row1count = 2;
+	  				row2count = 3;
+	  				row3count = 2;
+	  			break;
+	  			case 8:
+	  				rowCount = 3;
+	  				row1count = 2;
+	  				row2count = 3;
+	  				row3count = 3;
+	  			break;
+	  			case 9:
+	  				rowCount = 3;
+	  				row1count = 3;
+	  				row2count = 3;
+	  				row3count = 3;
+	  			break;
+	  			case 10:
+	  				rowCount = 3;
+	  				row1count = 3;
+	  				row2count = 4;
+	  				row3count = 3;
+	  			break;
+	  			case 11:
+	  				rowCount = 3;
+	  				row1count = 3;
+	  				row2count = 4;
+	  				row3count = 4;
+	  			break;
+	  			case 12:
+	  				rowCount = 3;
+	  				row1count = 4;
+	  				row2count = 4;
+	  				row3count = 4;
+	  			break;
+	  			case 13:
+	  				rowCount = 4;
+	  				row1count = 3;
+	  				row2count = 3;
+	  				row3count = 4;
+	  				row4count = 3;
+	  			break;
+	  			case 14:
+	  				rowCount = 4;
+	  				row1count = 3;
+	  				row2count = 4;
+	  				row3count = 4;
+	  				row4count = 3;
+	  			break;
+	  			case 15:
+	  				rowCount = 4;
+	  				row1count = 3;
+	  				row2count = 4;
+	  				row3count = 4;
+	  				row4count = 4;
+	  			break;
+	  			case 16:
+	  				rowCount = 4;
+	  				row1count = 4;
+	  				row2count = 4;
+	  				row3count = 4;
+	  				row4count = 4;
+	  			break;
+	  			case 17:
+	  				rowCount = 4;
+	  				row1count = 4;
+	  				row2count = 4;
+	  				row3count = 5;
+	  				row4count = 4;
+	  			break;
+	  			case 18:
+	  				rowCount = 4;
+	  				row1count = 4;
+	  				row2count = 5;
+	  				row3count = 5;
+	  				row4count = 4;
+	  			break;
+	  			case 19:
+	  				rowCount = 4;
+	  				row1count = 4;
+	  				row2count = 5;
+	  				row3count = 5;
+	  				row4count = 5;
+	  			break;
+	  			case 20:
+	  				rowCount = 4;
+	  				row1count = 5;
+	  				row2count = 5;
+	  				row3count = 5;
+	  				row4count = 5;
+	  			break;
+	  		}
+	  		
+	  		var rc = 0;
+	  		var cc = 0;
+	  		
+	  		for (var i = 0; i < windowCount; i++)
+	  		{
+	  			var row = 1;
+	  			var tw = 0;
+	  			var th = 0;
+	  			var tt = 0;
+	  			var tl = 0;
+	  			
+	  			if ((windowCount < 4) && (rowCount == 1))
+	  			{
+	  				th = $('#desktop_iconarea').height();
+	  				tw = $('#desktop_iconarea').width() / row1count;
+	  				tl = ($('#desktop_iconarea').width() / row1count) * i;
+	  				tt = 0;
+	  				this.WindowList.items[i].window_object.setDimensions(tl,tt,tw,th);
+	  			}
+	  			
+	  			if (windowCount > 3) 
+	  			{
+	  				th = $('#desktop_iconarea').height() / rowCount;
+	  				if (rc == 0)
+	  					tw = $('#desktop_iconarea').width() / row1count;
+	  				if (rc == 1)
+	  					tw = $('#desktop_iconarea').width() / row2count;
+	  				if (rc == 2)
+	  					tw = $('#desktop_iconarea').width() / row3count;
+	  				if (rc == 3)
+	  					tw = $('#desktop_iconarea').width() / row4count;
+	  				
+	  				if (rc == 0)
+	  					tl = ($('#desktop_iconarea').width() / row1count) * cc;
+	  				if (rc == 1)
+	  					tl = ($('#desktop_iconarea').width() / row2count) * cc;
+	  				if (rc == 2)
+	  					tl = ($('#desktop_iconarea').width() / row3count) * cc;
+	  				if (rc == 3)
+	  					tl = ($('#desktop_iconarea').width() / row4count) * cc;
+	  				
+	  				tt = ($('#desktop_iconarea').height() / rowCount) * rc;
+	  				
+	  				this.WindowList.items[i].window_object.setDimensions(tl,tt,tw,th);
+	  				cc += 1;
+	  				if (((rc == 0) && (cc >= row1count)) || 
+	  					((rc == 1) && (cc >= row2count)) ||
+	  					((rc == 2) && (cc >= row3count)))
+	  				{
+	  					rc += 1;
+	  					cc = 0;
+	  				}
+	  			}
+	  			
+	  			
+	  		}
 	  	},
 	  	
 	  	iconHelper: {
@@ -947,6 +1147,7 @@ var nJDSK = (function(wnd,d,$){
 		  		}
 		  		menuParent.append('<li id="'+menuId+'"><a href="'+mh+'"><span class="menu_icon">'+mi+'</span><span class="menu_title">'+menuTitle+'</span></a></li>');
 		  		$('#'+menuId+'>a').click(function(e){
+		  			
 		  			if (mh == '#')
 		  			{
 		  				
@@ -954,6 +1155,7 @@ var nJDSK = (function(wnd,d,$){
 		  				{
 		  					
 		  					clickCallback();
+		  					nJDSK.clearActive();
 		  				}
 		  			}
 		  		});
