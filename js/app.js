@@ -88,6 +88,12 @@ var nJDSKApp = (function(w,d,$){
 			});
 		},
 		
+		// Pad string function for the updateClock function (demo widget)
+		// added by gyorgysagi@gmail.com
+		padDigits: function(number, digits) {
+		    return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
+		},
+		
 		// This is the clock updater function for the demo widget
 		updateClock:function(x_id){
 			var wdgDate = new Date();
@@ -96,7 +102,7 @@ var nJDSKApp = (function(w,d,$){
 			year = wdgDate.getFullYear();
 			month = wdgDate.getMonth()+1;
 			day = wdgDate.getDate();
-			$('#'+x_id+' .widget-content').html('<div class="wdg_clock">'+hours+':'+minutes+'</div><div class="wdg_cal">'+month+'/'+day+'/'+year);
+			$('#'+x_id+' .widget-content').html('<div class="wdg_clock">'+this.padDigits(hours,2)+':'+this.padDigits(minutes,2)+'</div><div class="wdg_cal">'+this.padDigits(month,2)+'/'+this.padDigits(day,2)+'/'+year);
 			setTimeout("nJDSKApp.updateClock('"+x_id+"')",60000);
 		},
 		
