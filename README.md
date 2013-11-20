@@ -25,3 +25,7 @@ nJDesktop features
 * Callbacks
 * Resize-sensitive desktop environment (adapts to new window sizes, icons are rearranged)
 * Window Toolbar helper (built-in plugin)
+
+Documentation is available here: 
+
+http://nagyervin.eu/njdesktop
