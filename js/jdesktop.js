@@ -133,7 +133,7 @@ var nJDSK = (function(wnd,d,$){
 		  	  this.removeFullGlass = function()
 		  	  {
 		  		$(this.contentArea).removeClass('fullGlass');
-		  	  }
+		  	  };
 
 		  	  /**
 		  	   * Turn content area backgrounds and borders transparent
@@ -142,9 +142,12 @@ var nJDSK = (function(wnd,d,$){
 		  	  this.setFullGlass = function()
 		  	  {
 		  		$(this.contentArea).addClass('fullGlass');
-		  	  }
-	  		
-	  		
+		  	  };
+	  	
+		this.skipEvent = false;  	  
+		this.w_id = id;
+		this.windowToolbar = null;
+			
 		/*
 		 * Provide basic cascading on window creation
 		 */
@@ -265,7 +268,7 @@ var nJDSK = (function(wnd,d,$){
 	  	  /*title buttons container*/
 	  	  this.titleButtons = document.createElement('div');
 	  	  this.titlebar.appendChild(this.titleButtons);
-	  	  $(this.titleButtons).addClass('titlebuttons')
+	  	  $(this.titleButtons).addClass('titlebuttons');
 	  	//  this.sysIcon = document.createElement('a'); // not implemented yet
 	  	  
 	  	  /*create title buttons depending on window type (dialog or not)*/
@@ -325,6 +328,7 @@ var nJDSK = (function(wnd,d,$){
 	  		    }
 	  		    
 	  		    $('#win_'+id).children('.contentarea').children('.list_header').css({'top':$(this).scrollTop()+'px'});
+	  		    $(this).parents('.window').resize();
 	  		  });
 	  		  
 	  		  /* maximize/restore on title bar doubleclick */
@@ -358,9 +362,43 @@ var nJDSK = (function(wnd,d,$){
 			  		    }
 			  		    
 			  		    $('#win_'+id).children('.contentarea').children('.list_header').css({'top':$(this).scrollTop()+'px'});
+			  		    $(this).parents('.window').resize();
 	  		  });
 	  	  }
 	  	  
+	  	  /*add close function - for the window be removable from outside*/
+	  	  this.close=function(){
+	  		  /*this line with tinymce should be removed, if you aren't using tinyMCE, as it will cause an error*/
+	  		//$('#win_'+id+' textarea.tinymce').tinymce().remove();
+	  		  if (typeof(this.onBeforeClose) == 'function')
+	  		  {
+	  			  // before close event: can be used to save information, or prevent closing the window
+	  			  if (this.onBeforeClose('win_'+id) === false){
+	  				  return;
+	  			  }
+	  		  }
+	  		  
+	  		  $('#win_'+id).fadeOut('fast',function(){
+	  			  $('#win_'+id).remove();
+	  		  });
+	  		  if (this.modal==true)
+	  		  {
+	  			  $('#Winbg_'+id).remove();
+	  		  }
+	  		  $('#tskbrbtn_'+id).hide('fast',function(){
+	  			  $(this).remove();
+	  		  });
+	  		  $('#mainmenu').fadeOut('fast');
+	  		  
+	  		  /*unregister this window instance*/
+	  		  nJDSK.WindowList.delete_item(id);
+	  		  
+	  		  // After close event: can be used to trigger an action after the window has been closed
+	  		  if (typeof(this.onAfterClose) == 'function')
+	  		  {
+	  			  this.onAfterClose('win_'+id);
+	  		  }
+	  	  };
 
 	  	  
 	  	  /*close button - always visible*/
@@ -369,22 +407,26 @@ var nJDSK = (function(wnd,d,$){
 	  	  $(this.closeBtn).attr('href','#');
 	  	  $(this.closeBtn).html('X');
 	  	  $(this.closeBtn).addClass('closebtn');
+	  	  
+	  	  var closeObject = this;
+	  	  
 	  	  $(this.closeBtn).click(function(){
 	  		  
-	  		  
+	  		  /*Deprecated - Will be removed after testing*/
 	  		  /*this line with tinymce should be removed, if you aren't using tinyMCE, as it will cause an error*/
 	  		  //$('#win_'+id+' textarea.tinymce').tinymce().remove();
-	  		  $('#win_'+id).fadeOut('fast',function(){
-	  			  $('#win_'+id).remove();
-	  		  });
-	  		  $('#Winbg_'+id).remove();
-	  		  $('#mainmenu').fadeOut('fast');
-	  		  $('#tskbrbtn_'+id).hide('fast',function(){
-	  			  $(this).remove();
-	  		  });
+	  		  //$('#win_'+id).fadeOut('fast',function(){
+	  		  //	  $('#win_'+id).remove();
+	  		  //});
+	  		  //$('#Winbg_'+id).remove();
+	  		  //$('#mainmenu').fadeOut('fast');
+	  		  //$('#tskbrbtn_'+id).hide('fast',function(){
+	  			//  $(this).remove();
+	  		  //});
 	  		  
 	  		  /*unregister this window instance*/
-	  		  nJDSK.WindowList.delete_item(id);
+	  		  //nJDSK.WindowList.delete_item(id);
+	  		  closeObject.close();
 	  	  });
 	  	  
 	  	  
@@ -410,25 +452,6 @@ var nJDSK = (function(wnd,d,$){
 	  	  /*show the base div*/
 	  	  $(this.base).fadeIn();
 
-	  	  /*add close function - for the window be removable from outside*/
-	  	  this.close=function(){
-	  		  /*this line with tinymce should be removed, if you aren't using tinyMCE, as it will cause an error*/
-	  		//$('#win_'+id+' textarea.tinymce').tinymce().remove();
-	  		  $('#win_'+id).fadeOut('fast',function(){
-	  			  $('#win_'+id).remove();
-	  		  });
-	  		  if (this.modal==true)
-	  		  {
-	  			  $('#Winbg_'+id).remove();
-	  		  }
-	  		  $('#tskbrbtn_'+id).hide('fast',function(){
-	  			  $(this).remove();
-	  		  });
-	  		  $('#mainmenu').fadeOut('fast');
-	  		  
-	  		  /*unregister this window instance*/
-	  		  nJDSK.WindowList.delete_item(id);
-	  	  }
 	  	  
 	  	  // create the taskbar button
 	  	  this.taskbarBtn=document.createElement('div');
@@ -485,7 +508,7 @@ var nJDSK = (function(wnd,d,$){
 	  		  $(this.toolbar).html(toolbar);
 	  		  if (toolbar == '')
 	  			  $(this.toolbar).css({'height':0});
-	  		  var windowToolbar = this.toolbar;
+	  		  this.windowToolbar = this.toolbar;
 	  		
 	  		  /*add status bar area*/
 	  		  this.statusbar = document.createElement('div');
@@ -536,10 +559,22 @@ var nJDSK = (function(wnd,d,$){
 	  	          $(this).children('.contentarea').css({
 	  	            'height':$('#win_'+id).height()-$('.titlebar').height()-2-$(this).find('.statusbar').height()-$(this).find('.toolbar').height()-10
 	  	          });
-	  				if ($('#win_'+id+' .mceIframeContainer iframe').get(0)!=undefined){
-	  					$('#win_'+id+' .mceIframeContainer iframe').get(0).style.height = parseInt($(this).children('.contentarea').css('height').replace('px'))-$('#win_'+id+' .mceToolbar').get(0).offsetHeight-$('#win_'+id+' .mceStatusbar').get(0).offsetHeight-2+'px';
-	  				}
-	  				$(this).children('.contentarea').children('.list_header').css({'top':$(this).scrollTop()+'px'});
+	  				
+	  	          if ($('#win_'+id+' .mceIframeContainer iframe').get(0)!=undefined){
+	  				$('#win_'+id+' .mceIframeContainer iframe').get(0).style.height = parseInt($(this).children('.contentarea').css('height').replace('px'))-$('#win_'+id+' .mceToolbar').get(0).offsetHeight-$('#win_'+id+' .mceStatusbar').get(0).offsetHeight-2+'px';
+	  			  }
+	  				
+	  	          $(this).children('.contentarea').children('.list_header').css({'top':$(this).scrollTop()+'px'});
+	  				
+	  			  
+	  	          if ((typeof(closeObject.skipEvent) != 'undefined') && (closeObject.skipEvent === true))
+	  			  {
+	  				  return;
+	  			  }
+	  				
+	  			  if (typeof(closeObject.onResize) == 'function'){
+	  				  closeObject.onResize(closeObject);
+	  			  }
 
 	  	  });
 	  	  
@@ -549,7 +584,7 @@ var nJDSK = (function(wnd,d,$){
 	  		  $(this.base).css({"left" : left + 'px',"top" : top + 'px', 'width' : (width - 10) + 'px', 'height' : (height - 10) + 'px'});
 	  		  // trigger resize event
 	  		  $(this.base).resize();
-	  	  }
+	  	  };
 	  	  
 	  	  //adds some behavior for standard bws list 
 	  	  var awidth = 0;
@@ -600,12 +635,12 @@ var nJDSK = (function(wnd,d,$){
 	  	  {
 	  			$(this.taskbarBtn).html(ititle);
 	  			$(this.titleText).html(ititle);
-	  	  }
+	  	  };
 	  	  
 	  	  // facility to make a window unclosable
 	  	  this.noClose = function(){
 	  		$(this.base).find('a.closebtn').remove();  
-	  	  }
+	  	  };
 	  	  
 	  	  /*facility to change footer contents.outside*/
 
@@ -613,23 +648,23 @@ var nJDSK = (function(wnd,d,$){
 	  	  {
 	  		 if (this.statusbar)
 	  			{
-	  			 	if (content !='')
-	  			 	{
-	  			 		$(this.statusbar).css({'height':'auto'});
-	  			 	}
-	  			 	else
-	  			 	{
-	  			 		$(this.statusbar).css({'height':0});
-	  			 	}
+	  			 	this.skipEvent = true;
+	  			 	
+	  			    $(this.statusbar).css({'height':'auto'});
+	  			 	
 	  			 	$(this.statusbar).html(content);
+	  			 	
 	  			 	$(this.base).resize();
+	  			 	
+	  			 	this.skipEvent = false;
 	  			}
-	  	  }
+	  	  };
 	  		
 	  	  this.editor = null;
 	  	  this.data = null;
 	  	  
 	  	  var windowBase = this.base;
+	  	  var windowToolbar = this.windowToolbar;
 	  	  
 	  	  /**
 	  	   * Toolbar helper plugin
@@ -732,7 +767,7 @@ var nJDSK = (function(wnd,d,$){
 	  			$(windowToolbar).css({'height':0});
 	  			$(windowBase).resize();
 	  		}
-	  	  }
+	  	  };
 	  	  
 	  	  
 	  	  //register the window object and store array index
@@ -757,7 +792,7 @@ var nJDSK = (function(wnd,d,$){
 	  			{
 	  				buttons[index].callback(win);
 	  			}
-	  		}
+	  		};
 	  	},
 
 	  	/**
@@ -765,7 +800,7 @@ var nJDSK = (function(wnd,d,$){
 	  	 */
 	  	confirm: function(title,message,buttons)
 	  	{
-	  		nJDSK.customHeaderDialog('Confirm', title, message, buttons)
+	  		nJDSK.customHeaderDialog('Confirm', title, message, buttons);
 	  	},
 	  	
 
@@ -977,7 +1012,6 @@ var nJDSK = (function(wnd,d,$){
 	  		
 	  		for (var i = 0; i < windowCount; i++)
 	  		{
-	  			var row = 1;
 	  			var tw = 0;
 	  			var th = 0;
 	  			var tt = 0;
@@ -1078,7 +1112,7 @@ var nJDSK = (function(wnd,d,$){
 	
 		  		if (typeof(callback) == 'function')
 	  			{
-	  				$('#'+iconId).dblclick(function(e){return callback(e)});
+	  				$('#'+iconId).dblclick(function(e){return callback(e);});
 	  			}
 		  		
 		  		nJDSK.nextIconPos.top=nJDSK.nextIconPos.top+nJDSK.iconMaxHeight+nJDSK.iconMargin*2+nJDSK.iconBorderWeight*2;
@@ -1294,6 +1328,6 @@ var nJDSK = (function(wnd,d,$){
 	        });
 	  		
 	  	}
-	}
+	};
 	
 })(window, document, jQuery);

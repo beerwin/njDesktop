@@ -397,6 +397,30 @@ var nJDSKApp = (function(w,d,$){
 				return false;
 			});
 			
+			// this icon creates a window with events
+			nJDSK.iconHelper.addIcon('resIconEvents','Window with events','images/bws_logo2k9.png',function(e){
+				e.preventDefault();
+				$.get('xct.html',function(msg){
+					var newWindow = new nJDSK.Window(640,480,'Window with events','',msg, nJDSK.uniqid(),false,false,false,function(){
+						alert('Created');
+					});
+					newWindow.setFooter('This is a dynamic footer');
+					
+					newWindow.onBeforeClose=function(win_id){
+						return confirm('Close?');
+					};
+					newWindow.onAfterClose=function(win_id){
+						alert('Closed');
+					};
+					
+					newWindow.onResize=function(win){
+					  win.setFooter($(win.base).width()+':'+$(win.base).height());
+					};
+				});
+				
+				return false;
+			});			
+			
 			// add a widget (params: widget id, widget title, widget content, widget init function)
 			nJDSK.widgets.addItem('wdgClock','Clock','<div class="wdg-clock"></div>',function(id){
 
@@ -408,7 +432,7 @@ var nJDSKApp = (function(w,d,$){
 				
 			});
 		}
-	}
+	};
 })(window, document, jQuery);
 
 $(document).ready(function(){
