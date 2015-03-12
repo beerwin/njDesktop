@@ -371,6 +371,12 @@ var nJDSK = (function(wnd,d,$){
 			  		           }
 			  		
 			  			   });
+			  		       
+				  		   if (typeof(maxThat.onMaximize) == 'function')
+				  		   {
+				  		    	maxThat.onMaximize('win_'+id);
+				  		   }
+			  		       
 			  		    }
 			  		    
 			  		    $('#win_'+id).children('.contentarea').children('.list_header').css({'top':$(this).scrollTop()+'px'});
@@ -647,9 +653,21 @@ var nJDSK = (function(wnd,d,$){
 	  				$('#'+id+'-folder').val($(this).children('.id_item').text());
 	  				  refresh_page_list(id,$(this).children('.id_item').text());
 	  			}
-	  		  });
+	  	  });
 	  	  
+	  	  var minMaxThat = this;
+	  	  
+	  	  this.maximize = function(){
+	  		$(minMaxThat.maximizeBtn).click();
+	  	  };
+	  	  
+	  	  this.minimize = function(){
+		  		$(minMaxThat.minimizeBtn).click();
+	  	  };
 
+	  	  this.restore = function(){
+		  		$(minMaxThat.taskbarBtn).click();
+	  	  };
 
 	  	  /*facility to change title from outside*/
 	  	  this.setTitle = function(ititle)
