@@ -283,8 +283,13 @@ var nJDSK = (function(wnd,d,$){
 	  		  $(this.minimizeBtn).attr('href','#');
 	  		  $(this.minimizeBtn).html('_');
 	  		  $(this.minimizeBtn).addClass('minimizebtn');
+	  		  var minThat = this;
 	  		  $(this.minimizeBtn).click(function(){
 	  		    $('#win_'+id).hide();
+	  		    if (typeof(minThat.onMinimize) == 'function')
+	  		    {
+	  		    	minThat.onMinimize('win_'+id);
+	  		    }
 	  		  });
 	  		  
 	  		  /*maximize button*/
@@ -293,6 +298,7 @@ var nJDSK = (function(wnd,d,$){
 	  		  $(this.maximizeBtn).attr('href','#');
 	  		  $(this.maximizeBtn).html('O');
 	  		  $(this.maximizeBtn).addClass('maximizebtn');
+	  		  var maxThat = this;
 	  		  $(this.maximizeBtn).click(function(){
 	  			$('#win_'+id).addClass('transitioner');  
 	  		    if (($('#win_'+id).width()==$('#desktop').width()-10)&&($('#win_'+id).height()==$('#desktop').height()-10)){
@@ -308,7 +314,7 @@ var nJDSK = (function(wnd,d,$){
 	  		            
 	  			   });
 	  		    } else {
-	  		    	$('#win_'+id).addClass('transitioner');
+	  		       $('#win_'+id).addClass('transitioner');
 	  		       w = $('#win_'+id).css('width');
 	  		       h = $('#win_'+id).css('height');
 	  		       l = $('#win_'+id).css('left');
@@ -325,10 +331,16 @@ var nJDSK = (function(wnd,d,$){
 	  		           }
 	  		
 	  			   });
+		  		   if (typeof(maxThat.onMaximize) == 'function')
+		  		   {
+		  		    	maxThat.onMaximize('win_'+id);
+		  		   }
+
 	  		    }
 	  		    
 	  		    $('#win_'+id).children('.contentarea').children('.list_header').css({'top':$(this).scrollTop()+'px'});
 	  		    $(this).parents('.window').resize();
+
 	  		  });
 	  		  
 	  		  /* maximize/restore on title bar doubleclick */
@@ -463,17 +475,26 @@ var nJDSK = (function(wnd,d,$){
 	  	  $('.taskbarbutton').removeClass('activetsk');
 	  	  $('#tskbrbtn_'+id).addClass('activetsk');
 	  	  $('#taskbarbuttons').scrollTo($(this.taskbarBtn),'fast');
-	  	  
+	  	  var tskbThat = this;
 	  	  // add taskbar button behavior
 	  	  $(this.taskbarBtn).click(function(){
 	  		  if (($('#tskbrbtn_'+id).hasClass('activetsk')) && ($('#win_'+id).is(':visible')))
 	  		  {
 	  			  $('#win_'+id).hide();
+	  		      if (typeof(tskbThat.onMinimize) == 'function')
+	  		      {
+	  		    	  tskbThat.onMinimize('win_'+id);
+	  		      }
+	  			  
 	  			  return;
 	  		  }
 	  		  else
 	  		  {
 	  			  $('#win_'+id).show();
+	  			  if (typeof(tskbThat.onRestore) == 'function')
+	  			  {
+	  				  tskbThat.onRestore('win_' + id);
+	  			  }
 	  		  }
 	  		  $('.taskbarbutton').removeClass('activetsk');
 	  		  $('#tskbrbtn_'+id).addClass('activetsk');

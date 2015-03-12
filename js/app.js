@@ -413,6 +413,18 @@ var nJDSKApp = (function(w,d,$){
 						alert('Closed');
 					};
 					
+					newWindow.onMinimize = function(win_id){
+						alert('Minimized');
+					}
+
+					newWindow.onMaximize = function(win_id){
+						alert('Maximized');
+					}
+
+					newWindow.onRestore = function(win_id){
+						alert('Restored');
+					}
+					
 					newWindow.onResize=function(win){
 					  win.setFooter($(win.base).width()+':'+$(win.base).height());
 					};
