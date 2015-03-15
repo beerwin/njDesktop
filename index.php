@@ -60,11 +60,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Desktop</title>
 <link href="css/jdesktop.css" rel="stylesheet" />
-<link href="css/jdesktop-theme/jquery-ui.min.css" rel="stylesheet" />
-<link href="css/jdesktop-theme/jquery-ui.structure.css" rel="stylesheet" />
-<link href="css/jdesktop-theme/jquery-ui.theme.css" rel="stylesheet" />
-<link href="css/jdesktop.forms.css" rel="stylesheet" />
-<link href="css/jdesktop.text.css" rel="stylesheet" />
+<link href="themes/<?php echo $theme; ?>/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<link href="themes/<?php echo $theme; ?>/jquery-ui/jquery-ui.structure.css" rel="stylesheet" />
+<link href="themes/<?php echo $theme; ?>/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+<link href="themes/<?php echo $theme; ?>/jdesktop.forms.css" rel="stylesheet" />
+<link href="themes/<?php echo $theme; ?>/jdesktop.text.css" rel="stylesheet" />
 <link href="themes/<?php echo $theme; ?>/style.css" rel="stylesheet" />
 <!--[if IE]>
 <link href="css/jdesktop.ie.all.css" rel="stylesheet" type="text/css" />  

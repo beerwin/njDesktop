@@ -266,51 +266,35 @@ input[type="button"],
 input[type="submit"],
 input[type="reset"]{
 	margin: 0 5px 0 5px;
-	border:1px solid #999;
+	border:1px solid #ccc;
 	padding:5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	background-color:#ccc;
+	background-color:#f0f0f0;
 	color:#666;
 	font-weight:bold;
-	text-shadow:#F0F0F0;
-	background-image: -moz-linear-gradient(#f0f0f0,#cccccc);
-	background-image: -webkit-linear-gradient(#f0f0f0,#cccccc);
-	background-image: -o-linear-gradient(#f0f0f0,#cccccc);
-	background-image: linear-gradient(#f0f0f0,#cccccc);
 }
 
 input[type="submit"],
 button[type="submit"]
 {
-	border:1px solid #06c;
-	background-image: -moz-linear-gradient(#9cf,#69f);
-	background-image: -webkit-linear-gradient(#9cf,#69f);
-	background-image: -o-linear-gradient(#9cf,#69f);
-	background-image: linear-gradient(#9cf,#69f);
+	border:1px solid #8bf;
+	background-color: #9cf;
 	color:#333;
 }
 
 input[type="submit"]:hover,
 button[type="submit"]:hover
 {
-	border:1px solid #8bf;
-	background-image: -moz-linear-gradient(#def,#adf);
-	background-image: -webkit-linear-gradient(#def,#adf);
-	background-image: -o-linear-gradient(#def,#adf);
-	background-image: linear-gradient(#def,#adf);
+	border:1px solid #adf;
+	background-color: #adf;
 }
 
 .button:hover,
 button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover{
-	background-color:#EEEEEE;
-	background-image: -moz-linear-gradient(#cccccc,#f0f0f0);
-	background-image: -webkit-linear-gradient(#cccccc,#f0f0f0);
-	background-image: -o-linear-gradient(#cccccc,#f0f0f0);
-	background-image: linear-gradient(#cccccc,#f0f0f0);
+	background-color:rgba(0,0,0,0.5);
+	border: 1px solid transparent;
+	color: #fff;
 }
 
 .button:last-child{
@@ -469,4 +453,3 @@ a.theme-link:first-child
 {
 	margin-top: 1em;
 }
-

@@ -304,11 +304,11 @@ input[type="reset"]{
 input[type="submit"],
 button[type="submit"]
 {
-	border:1px solid #06c;
-	background-image: -moz-linear-gradient(#9cf,#69f);
-	background-image: -webkit-linear-gradient(#9cf,#69f);
-	background-image: -o-linear-gradient(#9cf,#69f);
-	background-image: linear-gradient(#9cf,#69f);
+	border:1px solid #8bf;
+	background-image: -moz-linear-gradient(#def,#adf);
+	background-image: -webkit-linear-gradient(#def,#adf);
+	background-image: -o-linear-gradient(#def,#adf);
+	background-image: linear-gradient(#def,#adf);
 	color:#333;
 }
 
@@ -316,10 +316,10 @@ input[type="submit"]:hover,
 button[type="submit"]:hover
 {
 	border:1px solid #8bf;
-	background-image: -moz-linear-gradient(#def,#adf);
-	background-image: -webkit-linear-gradient(#def,#adf);
-	background-image: -o-linear-gradient(#def,#adf);
-	background-image: linear-gradient(#def,#adf);
+	background-image: -moz-linear-gradient(#cdf,#9cf);
+	background-image: -webkit-linear-gradient(#cdf,#9cf);
+	background-image: -o-linear-gradient(#cdf,#9cf);
+	background-image: linear-gradient(#cdf,#9cf);
 }
 
 .button:hover,
