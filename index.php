@@ -37,6 +37,26 @@
  * I must remind you, that your changes will be subject to the GPL v.3.
 
  -->
+<?php
+
+	if (isset($_GET['theme']) && trim($_GET['theme']) != '')
+	{
+		$theme = $_GET['theme'];
+		if ((stripos($theme, '://') === false) && (stripos($theme, '..') === false) && (stripos($theme,'/') === false))
+		{
+			$theme = $_GET['theme'];
+		}
+		else
+		{
+			$theme = 'redmond';
+		}
+	}
+	else
+	{
+		$theme = 'redmond';
+	}
+
+?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Desktop</title>
 <link href="css/jdesktop.css" rel="stylesheet" />
@@ -45,12 +65,14 @@
 <link href="css/jdesktop-theme/jquery-ui.theme.css" rel="stylesheet" />
 <link href="css/jdesktop.forms.css" rel="stylesheet" />
 <link href="css/jdesktop.text.css" rel="stylesheet" />
+<link href="themes/<?php echo $theme; ?>/style.css" rel="stylesheet" />
 <!--[if IE]>
 <link href="css/jdesktop.ie.all.css" rel="stylesheet" type="text/css" />  
 <![endif]-->
 <!--[if lte IE 8]>
 <link href="css/jdesktop.ie.css" rel="stylesheet" type="text/css" />  
 <![endif]-->
+<script>nJDSKCurrentTheme = '<?php echo $theme;?>';</script>
 </head>
 <body>
 	
@@ -73,6 +95,7 @@
 	<script src="js/vendor/jquery-ui.min.js"></script>
 	<script src="js/vendor/jquery.ui.selectmenu.js"></script>
 	<script src="js/vendor/jquery.scrollTo-min.js"></script>
+	<script src="themes/<?php echo $theme; ?>/theme.js"></script>
 	<script src="js/jdesktop.js"></script>
 	<script src="js/jdesktop.widgets.js"></script>
 	<script src="js/app.js"></script>

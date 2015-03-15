@@ -44,39 +44,25 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
 
 #nJDSKBG{width:100%; height:100%;}
 
-#topmenu{background-color:rgba(255, 255, 255, 0.9); position:absolute; top:0; left:0; width:100%; z-index:#999999999; box-shadow:0 0 5px #000000}
+#topmenu{position:absolute; top:0; left:0; width:100%; z-index:#999999999; }
 
-#widgets{background-color:rgba(0, 0, 0, 0.7); position:absolute; right:0; z-index:#999999999;  box-shadow:0 0 5px #000000}
+#widgets{position:absolute; right:0; z-index:#999999999; }
 
 #desktop{position:absolute;left:0; z-index: 1;}
 
-#taskbar{background-color:#eeeedd; position:absolute;left:0; bottom:0; width:100%; background-color:rgba(0,0,0,0.5); color:#CCC; z-index: 9999999;  box-shadow:0 0 5px #000000}
+#taskbar{position:absolute;left:0; bottom:0; width:100%; z-index: 9999999;}
 
 #desktop_iconarea{width:100%; height:100%; position:absolute; z-index:2;}
 
       #showdesktop{
-        background-image:url(../images/showdesktop.png);
-        background-repeat:no-repeat; 
-        background-position:center center;
-        border-radius: 2px;
-        color:#fff;
-        border:1px solid transparent;
         height:26px;
         width:26px;
         margin:1px;
-        color:#fff;
-        font-weight:normal;
         float:left;
-        text-decoration:none;
         outline:none;
         text-indent:-999999px;
       }
       
-      #showdesktop:hover{
-      	background-color: rgba(255, 255, 255, 0.3);
-      	border-color: rgba(255, 255, 255, 0.6);
-      }
-
       #mainmenu{
         width:300px;
         height:400px;
@@ -175,10 +161,6 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
         margin:15px;
         float:left;
         text-decoration: none;
-        border:2px solid transparent;
-        -moz-border-radius:5px;
-        -webkit-border-radius:5px;
-        border-radius:5px;
         position:absolute;
         z-index:1;
 }
@@ -186,12 +168,6 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
 	  .icon span{cursor: default;}
 
       .icon:hover, .activeIcon{
-        border:2px solid #fff;
-        background-color: transparent;;
-        background-image:-moz-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0.8) 30px,rgba(255,255,255,0.6) 100%);
-        background-image:-webkit-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0.8) 30px,rgba(255,255,255,0.6) 100%);
-        background-image:-o-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0.8) 30px,rgba(255,255,255,0.6) 100%);
-        background-image:linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0.8) 30px,rgba(255,255,255,0.6) 100%);
 
       }
 
@@ -207,151 +183,52 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
 
       .icon span{
         display:block;
-        color:#fff;
         text-decoration:none;
-        text-align:center;
         margin-top: 1em;
-        text-shadow: 2px 2px 3px #000;
+        text-align:center;
       }
       
-      .icon:hover span, .icon.activeIcon span{color:#333; text-shadow: 2px 2px 3px rgba(64,64,64,0.5)}
+      .icon:hover span, .icon.activeIcon span{}
       
       .transitioner{
       	
       }
 
       .window{
-        background-color:transparent;
-        background-image:url('../images/winbg.png');
-        background-image:-moz-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0.8) 30px,rgba(255,255,255,0.6) 100%);
-        background-image:-webkit-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0.8) 30px,rgba(255,255,255,0.6) 100%);
-        background-image:-o-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0.8) 30px,rgba(255,255,255,0.6) 100%);
-        background-image:linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0.8) 30px,rgba(255,255,255,0.6) 100%);
-		border:0px transparent #000;
         padding:5px;
         display:none;
         min-width: 175px;
         min-height:100px;
         left:10px;
         top:10px;
-        -moz-box-shadow: 0px 0px 5px #000;
-        -webkit-box-shadow: 0px 0px 5px #000;
-        box-shadow: 0px 0px 5px #000;
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
       }
 
       .titlebar{
-         height: 25px;
-         line-height:25px;
-         background-color:transparent;
-         color:#000;
-         text-shadow: 0px 0px 3px #fff;
 		 cursor:move !important;
       }
 
       .titlebuttons{
-        height:23px;
-        line-height:23px;
-        min-width: 23px;
         position: absolute;
-        right:8px;
-        top:0px;
       }
 
       .minimizebtn, .maximizebtn, .closebtn{
-        font-weight:bold;
         display:block;
         float:left;
-        color:#fff;
-        height: 18px;
-        line-height:18px;
-        font-size:12px;
         text-decoration:none;
-        background-color:#0099CC;
-        color:#fff;
-        font-weight:normal;
-        margin:0px;
-        text-align:center;
-        width:21px;
-        border:1px solid #fff;
-        -moz-box-shadow:0px 0px 1px #000;
-        -webkit-box-shadow:0px 0px 1px #000;
-        box-shadow:0px 0px 1px #000;
-        background-image:url(../images/titlebtn.png);
-        background-image:url(../images/titlebar-icons.png);
         text-indent:-9999999px;
       }
       
       a img{border:0}
       
-      .minimizebtn{background-position: top left}
-      .maximizebtn{background-position: -21px top }
-      .closebtn{background-position: top right}
-      .minimizebtn:hover{background-position: bottom left}
-      .maximizebtn:hover{background-position: -21px bottom }
-      .closebtn:hover{background-position: bottom right}
-
-      .minimizebtn:hover, .maximizebtn:hover, .closebtn:hover{
-        -moz-box-shadow: 0 0 7px #0099ff;
-        -webkit-box-shadow: 0 0 7px #0099ff;
-        box-shadow: 0 0 7px #0099ff;
-      }
-
-      .closebtn{
-        background-color:#ff0000;
-        color:#fff;
-        width: 35px;
-        -moz-border-radius: 0 0 5px 0;
-        -webkit-border-radius: 0 0 5px 0;
-        border-radius: 0 0 5px 0;
-      }
-
-      .closebtn:hover{
-      	background-color:#ff2900;
-        -moz-box-shadow: 0 0 5px #ff0000;
-        -webkit-box-shadow: 0 0 5px #ff0000;
-        box-shadow: 0 0 5px #ff0000;
-      }
-
-      .minimizebtn{
-        -moz-border-radius: 0 0 0 5px;
-        -webkit-border-radius: 0 0 0 5px;
-        border-radius: 0 0 0 5px;
-      }
-
-
-
       .taskbarbutton{
         line-height:26px;
         height:26px;
         padding-left:10px;
         padding-right:10px;
-        margin:1px;
-        font-size:12px;
         display:block;
         float:left;
         cursor:pointer;
-        border-color:rgba(255,255,255,0.2);
-        border-width: 1px;
-        border-style: solid;
-        -moz-border-radius:3px;
-        -webkit-border-radius:3px;
-        -khtml-border-radius:3px;
-        border-radius:3px;
-      }
-
-      .taskbarbutton:hover{
-        background-color:rgba(255,255,255,0.3);
-      }
-
-      .activetsk{
-        background-color:#ccc;
-        color:#000;
-        background-color:rgba(255,255,255,0.5);
-        border-color:#666;
-        border-color:rgba(255,255,255,0.6);
+        margin:1px;
       }
 
       .ui-icon-gripsmall-diagonal-se{
@@ -359,9 +236,9 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
         height:15px;
         background-color:transparent;
         position:absolute;
+        cursor: se-resize;
         right:0px;
         bottom:0px;
-        cursor: se-resize;
         background-image:url(../images/resizegrip.png);
       }
       
@@ -374,14 +251,8 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
       }
 
       .contentarea{
-         border-left:1px solid #666;
-         border-top:1px solid #666;
-         border-right:1px solid #999;
-         border-bottom:1px solid #999;
-		 background-color:#fff;
          overflow:auto;
 		 position:relative;
-		 border-radius:2px;
       }
       
       .fullGlass{
@@ -428,7 +299,7 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
 	  }
 
 	  .dialog{
-			background-color:#F0F0F0;
+			
 	  }
 
 	  .dialog p,
@@ -578,11 +449,6 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
 
 	  a.toolbar{
 		display:inline-block;
-		width:22px;
-		height:22px;
-		line-height:22px;
-		text-align:center;
-		padding:0;
 	  }
 	  
 	  a.toolbar-ext
@@ -619,12 +485,8 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
 	  
 	  
 	  span.toolbar-separator{
-	  	height:22px;
-	  	width:0px;
 	  	display:inline-block;
 	  	vertical-align:top;
-	  	border-left:1px solid #999;
-	  	border-right:1px solid #f0f0f0;
 	  }
 	  
 	  a.toolbar img{
@@ -634,16 +496,6 @@ body{margin:0; padding:0; width:100%; height:100%; position:relative; background
 
 	  a.toolbar:hover,
 	  a.toolbar-ext:hover{
-		background-image: -moz-linear-gradient(#ffffff,#f0f0f0);
-		background-image: -webkit-linear-gradient(#ffffff,#f0f0f0);
-		background-image: -o-linear-gradient(#ffffff,#f0f0f0);
-		background-image: linear-gradient(#ffffff,#f0f0f0);
-		-moz-border-radius: 3px;
-		-webkit-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0 0 3px #000;
-		-webkit-box-shadow: 0 0 3px #000;
-		box-shadow: 0 0 3px #000;
 		cursor:pointer;
 	  }
 	  
@@ -729,13 +581,9 @@ table#permissions{
 div.buttonarea
 {
 	margin:0px;
-	border-top:1px solid #ccc;
 	bottom:0;
-	padding: 10px 0 10px 0;
 	position:absolute;
 	width:100%;
-	text-align:right;
-	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .button,
@@ -743,20 +591,6 @@ button,
 input[type="button"],
 input[type="submit"],
 input[type="reset"]{
-	margin: 0 5px 0 5px;
-	border:1px solid #999;
-	padding:5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	background-color:#ccc;
-	color:#666;
-	font-weight:bold;
-	text-shadow:#F0F0F0;
-	background-image: -moz-linear-gradient(#f0f0f0,#cccccc);
-	background-image: -webkit-linear-gradient(#f0f0f0,#cccccc);
-	background-image: -o-linear-gradient(#f0f0f0,#cccccc);
-	background-image: linear-gradient(#f0f0f0,#cccccc);
 	cursor:pointer;
 }
 
@@ -802,30 +636,17 @@ input[type="reset"]:hover{
 	top:0;
 	width:100%;
 	height:100%;
-	background-color:#000000;
-	opacity:0.7;
-	filter:alpha(opacity=70);
-	-ms-filter:alpha(opacity=70);
 	z-index: 99999998;
 }
 
 .popup
 {
+	position:absolute;
+	z-index:9999999;
 	max-width:500px;
 	max-height:200px;
-	border:1px solid #F0F0F0;
-	background-color:#fff;
-	position:absolute;
 	left:5px;
 	top:60px;
-	padding:3px;
-	z-index:9999999;
-	-moz-border-radius:5px;	
-	-webkit-border-radius:5px;	
-	border-radius:5px;
-	-moz-box-shadow: 1px 1px 3px #000;	
-	-webkit-box-shadow: 1px 1px 3px #000;	
-	box-shadow: 1px 1px 3px #000;
 	overflow:auto;	
 }
 
@@ -894,28 +715,28 @@ Top menu
 
 #topmenu>ul{margin:0; padding:0; height:100%; position:relative; float:left; list-style:none;}
 #topmenu ul li{margin:0; padding:0; height:100%; position:relative; list-style:none;}
-#topmenu ul>li>ul{display:none; position:absolute; background-color:#f0f0f0;left:0; top:25px; z-index:99999999}
+#topmenu ul>li>ul{display:none; position:absolute; left:0; top:25px; z-index:99999999}
 #topmenu>ul>li{height:25px; float:left; display:block;}
 #topmenu>ul>li>a{padding:0 10px 0 10px; line-height:25px; float:left; height:25px}
 #topmenu>ul>li>a span.menu_icon{display:none}
-#topmenu ul li a{border:1px solid transparent; margin:1px; border-radius:3px}
-#topmenu ul li ul{width:200px; box-shadow:1px 1px 1px #000; margin:0; padding:0;}
+#topmenu ul li a{margin:1px; }
+#topmenu ul li ul{width:200px; margin:0; padding:0;}
 #topmenu ul li li{width:200px;}
 #topmenu ul li ul li{display:block; width:100%; float:left}
-#topmenu ul li li a{padding:0 5px 0 5px; line-height:25px; height:25px; font-size:11px; display:block; outline:none; }
-#topmenu ul li li a span.menu_icon{display:block; float:left; width:25px; height:25px; margin-right:5px; text-align:center; padding-right:5px; border-right:1px solid rgba(200,200,200,0.8)}
+#topmenu ul li li a{padding:0 5px 0 5px; line-height:25px; height:25px; display:block; outline:none; }
+#topmenu ul li li a span.menu_icon{display:block; float:left; width:25px; height:25px; margin-right:5px; text-align:center; padding-right:5px;}
 #topmenu ul li li a span.menu_icon img{vertical-align:middle}
-#topmenu a{color:#333333; text-decoration:none}
+#topmenu a{text-decoration:none}
 
-#topmenu ul li.activeMenu, #topmenu ul li li:hover{background-image:url(../images/mnitembg.png); background-position: left center;}
-#topmenu ul li.activeMenu>a, #topmenu ul li li:hover>a{color:#000; border:1px solid #99ccff}
+#topmenu ul li.activeMenu, #topmenu ul li li:hover{background-position: left center;}
+#topmenu ul li.activeMenu>a, #topmenu ul li li:hover>a{}
 
-.widget{padding:10px; border-bottom:2px solid #000;}
-.widget h3{margin:0; padding:5px 0 5px 0; font-size:18px; font-weight:normal; border-bottom:1px solid #f0f0f0; color:#fff;}
-.wdg_clock{text-align:center; color:#fff; font-size:48px;}
-.wdg_cal{text-align:center; color:#fff; font-size:14px; text-align:right}
+.widget{padding:10px;}
+.widget h3{margin:0; padding:5px 0 5px 0;}
+.wdg_clock{text-align:center;}
+.wdg_cal{text-align:right}
 
 .block{display:block;}
-.sysmsg{margin:10px; padding:5px; border:1px solid #ccc; background-color:#f0f0f0; color:#333; font-size:12px;}
-.sysmsg-loading{background-color:transparent; border:1px solid transparent;}
-.sysmsg-error{background-color:ffeeee; border:1px solid #c10; color:#900}
+.sysmsg{margin:10px; padding:5px;}
+.sysmsg-loading{}
+.sysmsg-error{}

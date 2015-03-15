@@ -38,13 +38,14 @@
 var nJDSK = (function(wnd,d,$){
 	return{
 		/*These settings can be changed*/
-		taskbarHeight: 30,
-	  	topMenuHeight: 25,
-	  	widgetWidth: 200,
-	  	iconWidth:96,
-	  	iconMaxHeight:128,
-	  	iconMargin:10,
-	  	iconBorderWeight:2,
+		taskbarHeight: nJDSKStyle.taskbarHeight,
+	  	topMenuHeight: nJDSKStyle.topMenuHeight,
+	  	widgetWidth: nJDSKStyle.widgetWidth,
+	  	iconWidth: nJDSKStyle.iconWidth,
+	  	iconMaxHeight: nJDSKStyle.iconMaxHeight,
+	  	iconMargin: nJDSKStyle.iconMargin,
+	  	iconBorderWeight: nJDSKStyle.iconBorderWeight,
+	  	windowPadding: nJDSKStyle.windowPadding,
 	  	nextIconPos:{
 	  		left:0,
 	  		top:0
@@ -253,6 +254,8 @@ var nJDSK = (function(wnd,d,$){
 
 	  	  $(this.base).addClass('window');
 	  	  $(this.base).attr('id','win_'+id);
+	      $('.activeWindow').removeClass('activeWindow');
+    	  $('#win_'+id).addClass('activeWindow');
 	  	  
 	  	  /*title bar*/
 	  	  this.titlebar = document.createElement('div');
@@ -301,12 +304,12 @@ var nJDSK = (function(wnd,d,$){
 	  		  var maxThat = this;
 	  		  $(this.maximizeBtn).click(function(){
 	  			$('#win_'+id).addClass('transitioner');  
-	  		    if (($('#win_'+id).width()==$('#desktop').width()-10)&&($('#win_'+id).height()==$('#desktop').height()-10)){
+	  		    if (($('#win_'+id).width()==$('#desktop').width()-nJDSK.windowPadding * 2)&&($('#win_'+id).height()==$('#desktop').height()-nJDSK.windowPadding * 2)){
 	  		       $('#win_'+id).animate({'width':w,'height':h,'left':l,'top':t},0,function()
 	  			   {
 	  		    	 $('#win_'+id).removeClass('transitioner');
 	  		            $('#win_'+id).children('.contentarea').css({
-	  		            	'height':$('#win_'+id).height()-$('.titlebar').height()-2-$('#win_'+id).find('.statusbar').height()-$('#win_'+id).find('.toolbar').height()-10
+	  		            	'height':$('#win_'+id).height()-$('.titlebar').height()-2-$('#win_'+id).find('.statusbar').height()-$('#win_'+id).find('.toolbar').height()-nJDSK.windowPadding * 2
 	  		            });
 	  		            if ($('#win_'+id+' .mceIframeContainer iframe').get(0)!=undefined){
 	  						$('#win_'+id+' .mceIframeContainer iframe').get(0).style.height = parseInt($('#win_'+id).children('.contentarea').css('height').replace('px'))-$('#win_'+id+' .mceToolbar').get(0).offsetHeight-$('#win_'+id+' .mceStatusbar').get(0).offsetHeight-2+'px';
@@ -319,11 +322,11 @@ var nJDSK = (function(wnd,d,$){
 	  		       h = $('#win_'+id).css('height');
 	  		       l = $('#win_'+id).css('left');
 	  		       t = $('#win_'+id).css('top');
-	  		       $('#win_'+id).animate({'width':($('#desktop').width()-10),'height':($('#desktop').height()-10),'left':0,'top':0},0,function()
+	  		       $('#win_'+id).animate({'width':($('#desktop').width()-nJDSK.windowPadding * 2),'height':($('#desktop').height()-nJDSK.windowPadding * 2),'left':0,'top':0},0,function()
 	  			   {
 	  		    	   $('#win_'+id).removeClass('transitioner');
 	  		           $('#win_'+id).children('.contentarea').css({
-	  		        	   'height':$('#win_'+id).height()-$('.titlebar').height()-2-$('#win_'+id).find('.statusbar').height()-$('#win_'+id).find('.toolbar').height()-10
+	  		        	   'height':$('#win_'+id).height()-$('.titlebar').height()-2-$('#win_'+id).find('.statusbar').height()-$('#win_'+id).find('.toolbar').height()-nJDSK.windowPadding * 2
 	  		            });
 	  		
 	  		           if ($('#win_'+id+' .mceIframeContainer iframe').get(0)!=undefined){
@@ -345,42 +348,8 @@ var nJDSK = (function(wnd,d,$){
 	  		  
 	  		  /* maximize/restore on title bar doubleclick */
 	  		  $(this.titlebar).dblclick(function(){
-		  		    if (($('#win_'+id).width()==$('#desktop').width()-10)&&($('#win_'+id).height()==$('#desktop').height()-10)){
-			  		       $('#win_'+id).animate({'width':w,'height':h,'left':l,'top':t},50,function()
-			  			   {
-			  		            $('#win_'+id).children('.contentarea').css({
-			  		            	'height':$('#win_'+id).height()-$('.titlebar').height()-2-$('#win_'+id).find('.statusbar').height()-$('#win_'+id).find('.toolbar').height()-10
-			  		            });
-			  		            if ($('#win_'+id+' .mceIframeContainer iframe').get(0)!=undefined){
-			  						$('#win_'+id+' .mceIframeContainer iframe').get(0).style.height = parseInt($('#win_'+id).children('.contentarea').css('height').replace('px'))-$('#win_'+id+' .mceToolbar').get(0).offsetHeight-$('#win_'+id+' .mceStatusbar').get(0).offsetHeight-2+'px';
-			  					}
-			  			   });
-			  		    } else {
-			  		       w = $('#win_'+id).css('width');
-			  		       h = $('#win_'+id).css('height');
-			  		       l = $('#win_'+id).css('left');
-			  		       t = $('#win_'+id).css('top');
-			  		       $('#win_'+id).animate({'width':($('#desktop').width()-10),'height':($('#desktop').height()-10),'left':0,'top':0},50,function()
-			  			   {
-			  		           $('#win_'+id).children('.contentarea').css({
-			  		        	 'height':$('#win_'+id).height()-$('.titlebar').height()-2-$('#win_'+id).find('.statusbar').height()-$('#win_'+id).find('.toolbar').height()-10
-			  		            });
-			  		
-			  		           if ($('#win_'+id+' .mceIframeContainer iframe').get(0)!=undefined){
-			  						$('#win_'+id+' .mceIframeContainer iframe').get(0).style.height = parseInt($('#win_'+id).children('.contentarea').css('height').replace('px'))-$('#win_'+id+' .mceToolbar').get(0).offsetHeight-$('#win_'+id+' .mceStatusbar').get(0).offsetHeight-2+'px';
-			  		           }
-			  		
-			  			   });
-			  		       
-				  		   if (typeof(maxThat.onMaximize) == 'function')
-				  		   {
-				  		    	maxThat.onMaximize('win_'+id);
-				  		   }
-			  		       
-			  		    }
-			  		    
-			  		    $('#win_'+id).children('.contentarea').children('.list_header').css({'top':$(this).scrollTop()+'px'});
-			  		    $(this).parents('.window').resize();
+	  			  // removed duplicate code
+	  			  maxThat.maximize();
 	  		  });
 	  	  }
 	  	  
@@ -505,6 +474,8 @@ var nJDSK = (function(wnd,d,$){
 	  		  $('.taskbarbutton').removeClass('activetsk');
 	  		  $('#tskbrbtn_'+id).addClass('activetsk');
 	  		  $('#win_'+id).css({'z-index':nJDSK.WindowList.lastZIndex});
+	  		  $('.window').removeClass('activeWindow');
+	  		  $('#win_'+id).addClass('activeWindow');
 	  		  $('#mainmenu').fadeOut('fast');
 	  		  nJDSK.WindowList.lastZIndex+=1;
 	  	  });
@@ -513,7 +484,7 @@ var nJDSK = (function(wnd,d,$){
 	  	  $(this.base).mousedown(function(){
 	  		  $('.taskbarbutton').removeClass('activetsk');
 	  		  $('#tskbrbtn_'+id).addClass('activetsk');
-	  		  
+	  		  $('.activeWindow').removeClass('activeWindow');
 	  		  $('#mainmenu').fadeOut('fast');
 	  	    
 	  		  // reveal taskbar button if it's outside the visible taskbar area
@@ -522,6 +493,7 @@ var nJDSK = (function(wnd,d,$){
 	  		  if (!modal)
 	  		  {
 	  			  $('#win_'+id).css({'z-index':nJDSK.WindowList.lastZIndex});
+	  			  $('#win_'+id).addClass('activeWindow');
 	  			  nJDSK.WindowList.lastZIndex+=1;
 	  		  }
 	  	  });
@@ -608,7 +580,7 @@ var nJDSK = (function(wnd,d,$){
 	  	  // arbitrary resize through program
 	  	  this.setDimensions = function(left,top,width,height)
 	  	  {
-	  		  $(this.base).css({"left" : left + 'px',"top" : top + 'px', 'width' : (width - 10) + 'px', 'height' : (height - 10) + 'px'});
+	  		  $(this.base).css({"left" : left + 'px',"top" : top + 'px', 'width' : (width - nJDSK.windowPadding * 2) + 'px', 'height' : (height - nJDSK.windowPadding * 2) + 'px'});
 	  		  // trigger resize event
 	  		  $(this.base).resize();
 	  	  };

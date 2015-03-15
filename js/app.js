@@ -443,6 +443,19 @@ var nJDSKApp = (function(w,d,$){
 				setTimeout("nJDSKApp.updateClock('"+x_id+"')",60000);
 				
 			});
+			
+			nJDSK.widgets.addItem('wdgThemes','Themes','<div class="wdg-themes"></div>',function(id){
+				var l1 = $('<a></a>').appendTo($('#wdgThemes .widget-content')).html('Redmond').addClass('theme-link').attr('href','?theme=redmond').attr('target','_self');
+				if ('redmond' == nJDSKCurrentTheme)
+				{
+					l1.addClass('currentTheme');
+				}
+				var l2 = $('<a></a>').appendTo($('#wdgThemes .widget-content')).html('BWS Light').addClass('theme-link').attr('href','?theme=bwslight').attr('target','_self');
+				if ('bwslight' == nJDSKCurrentTheme)
+				{
+					l2.addClass('currentTheme');
+				}
+			});
 		}
 	};
 })(window, document, jQuery);
