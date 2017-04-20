@@ -97,6 +97,8 @@
 	<script src="js/vendor/jquery.scrollTo-min.js"></script>
 	<script src="themes/<?php echo $theme; ?>/theme.js"></script>
 	<script src="js/jdesktop.js"></script>
+	<script src="js/jdesktop.icons.js"></script>
+	<script src="js/jdesktop.menus.js"></script>
 	<script src="js/jdesktop.widgets.js"></script>
 	<script src="js/app.js"></script>
 </body>
