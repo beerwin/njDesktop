@@ -1,6 +1,8 @@
 njDesktop
 =========
 
+> This version is no longer maintained. For new projects, refer to [NjDesktop 2](https://github.com/beerwin/njdesktop2)
+
 Robust Javascript virtual desktop
 
 nJDesktop is a robust Javascript Desktop framework, built with the help of jQuery and jQuery UI. It is built using HTML5, CSS3 and Javascript.
